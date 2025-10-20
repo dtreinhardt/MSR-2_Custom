@@ -45,16 +45,8 @@ globals:
     initial_value: "false"
 
 # Enable Home Assistant API
-# Also Add Buzzer Service Connection
 api:
   services:
-    - service: play_buzzer
-      variables:
-        song_str: string
-      then:
-        - rtttl.play:
-            rtttl: !lambda 'return song_str;'
-
     #Co2 Calibration Service
     - service: calibrate_co2_value
       variables:
@@ -224,16 +216,6 @@ number:
     icon: "mdi:arrow-collapse-right"
     entity_category: CONFIG
     unit_of_measurement: "cm"
-
-# Buzzer
-output:
-  - platform: ledc
-    pin: GPIO10
-    id: buzzer
-rtttl:
- output: buzzer
-
-
 
 binary_sensor:
   - platform: status
